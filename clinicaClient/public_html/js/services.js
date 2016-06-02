@@ -1,7 +1,7 @@
 angular.module("myApp.services",[])
         .factory("tipoCentroFactory",["$http",function($http){
                 var dataFactory = {};
-                var url = "http://chrisjcom:8080/clinica-war/ws/";
+                var url = "http://localhost:8080/clinica-war/ws/";
                 var entity = "TipoCentro";
                 
                 dataFactory.getTiposCentro = function (){
