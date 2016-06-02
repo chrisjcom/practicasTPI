@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css">
+    </head>
+    <body>
+        <div ng-controller="TipoCentroController">
+        <p><label for="filterId">ID: </label><input type="text" name="filterId" ng-model="idBuscado"></p>
+        <p><label for="filterNombre">Nombre: </label><input type="text" name="filterNombre" ng-model="nombreBuscado"></p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr ng-repeat="tc in listTipoCentro| filter: {idTipoCentro: idBuscado, nombre: nombreBuscado}">
+                        <td>{{tc.idTipoCentro}}</td>
+                        <td>{{tc.nombre}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <script src="vendor/angular/angular.js"></script>
+        <script src="vendor/angular-route/angular-route.js"></script>
+        <script src="app.js"></script>
+        <script src="js/controllers.js"></script>
+        <script src="js/services.js"></script>
+    </body>
+</html>
