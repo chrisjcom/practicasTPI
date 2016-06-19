@@ -10,20 +10,43 @@
         <div ng-controller="TipoCentroController">
         <p><label for="filterId">ID: </label><input type="text" name="filterId" ng-model="idBuscado"></p>
         <p><label for="filterNombre">Nombre: </label><input type="text" name="filterNombre" ng-model="nombreBuscado"></p>
-            <table class="table table-bordered">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
+                        <th>Activo</th>
                     </tr>
                 </thead>
                 <tbody>
-                   <tr ng-repeat="tc in listTipoCentro| filter: {idTipoCentro: idBuscado, nombre: nombreBuscado}">
+                   <tr ng-repeat="tc in listTipoCentro| filter: {idTipoCentro: idBuscado, nombre: nombreBuscado}"
+                       ng-click="seleccionar(tc)">
                         <td>{{tc.idTipoCentro}}</td>
                         <td>{{tc.nombre}}</td>
+                        <td>{{tc.activo}}</td>
                     </tr>
                 </tbody>
             </table>
+            <button id="btnNuevo" ng-click="mostrar()">Nuevo</button>
+            <form id="myForm" class="hidden form-inline">
+                <div class="form-group">
+                  <label for="frmId" class="control-label">ID: </label>
+                  <input type="text" id="frmId" class="form-control" ng-model="seleccionado.idTipoCentro" disabled>  
+                </div>
+                <div class="form-group">
+                  <label for="frmNombre" class="control-label">Nombre: </label>
+                  <input type="text" name="frmNombre" class="form-control" id="frmNombre" ng-model="seleccionado.nombre">
+                </div>
+                <div class="form-group">
+                  <label for="frmActivo" class="control-label">Activo: </label>
+                  <select name="frmActivo" id="frmActivo" class="form-control" ng-options="o.value as o.label for o in options" ng-model="seleccionado.activo">          
+                  </select>
+                </div>      
+                <button id="btnEditar" class="hidden" ng-click="updateTipoCentro(seleccionado)">Editar</button>
+                <button id="btnEliminar" class="hidden" ng-click="deleteTipoCentro(seleccionado)">Eliminar</button>
+                <button id="btnCancelar" class="hidden" ng-click="limpiar()">Cancelar</button>
+                <button id="btnCrear" class="hidden" ng-click="createTipoCentro(seleccionado)">Crear</button>
+            </form>
         </div>
         
         <script src="vendor/angular/angular.js"></script>
